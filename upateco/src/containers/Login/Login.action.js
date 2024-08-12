@@ -1,7 +1,6 @@
 import { makeActionCreator } from "../../config/store/utils"
 import { getLoginUser } from "../../services/login"
 
-
 export const GET_LOGIN_USER = 'GET_LOGIN_USER '
 export const GET_LOGIN_USER_ERROR = 'GET_LOGIN_USER_ERROR'
 export const GET_LOGIN_USER_SUCCESS = 'GET_LOGIN_USER_SUCCESS'
