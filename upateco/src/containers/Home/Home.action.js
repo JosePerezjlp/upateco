@@ -1,4 +1,6 @@
 import { makeActionCreator } from "../../config/store/utils"
+import { getAllRecipes, getOneRecipe } from "../../services/recipes"
+import { onGetStepRecipeThunk } from "../DetailRecipe/DetailRecipe.action"
 // import { onGetOneIngredientsRecipeThunk, onGetStepRecipeThunk } from "../DetailRecipe/DetailRecipe.action"
 // import { getAllIngredients, getAllRecipes, getOneRecipe } from "../services/recipes"
 
@@ -11,6 +13,7 @@ export const onGetAllRecipesSuccess = makeActionCreator(GET_ALL_RECIPES_SUCCESS,
 export const onGetAllRecipesThunk =
   () =>
   async dispatch => {
+    console.log('hola')
     dispatch(onGetAllRecipes())
 
     try {
@@ -40,6 +43,7 @@ export const onGetDetailRecipeSuccess = makeActionCreator(GET_DETAIL_RECIPE_SUCC
 export const onGetDetailRecipeThunk =
   (idRecipe) =>
   async dispatch => {
+    console.log(idRecipe)
     dispatch(onGetDetailRecipe())
 
     try {

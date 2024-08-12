@@ -1,4 +1,5 @@
-const routes = {  
+const routes = { 
+    detailRecipe: '/detalle-receta/:id', 
     home: '/'    
   }
   

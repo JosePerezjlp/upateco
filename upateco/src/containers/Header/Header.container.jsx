@@ -6,7 +6,7 @@ import routes from "../../config/settings/routes";
 
 const HeaderSection = () => {
   //   const { data } = useSelector((state) => state.category);
-  //   const { login } = useSelector((state) => state.loginUser);
+  const { login } = useSelector((state) => state.loginUser);
   const dispatch = useDispatch();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isDropdownOpenLogin, setDropdownOpenLogin] = useState(false);
@@ -56,7 +56,7 @@ const HeaderSection = () => {
     };
   }, [isDropdownOpen]);
   const username = sessionStorage.getItem("username");
-  const login = true;
+
   useEffect(() => {
     if (login || username) {
       setLoginUser(true);

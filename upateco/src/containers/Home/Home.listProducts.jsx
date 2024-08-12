@@ -17,11 +17,7 @@ const ListProducts = (props) => {
           className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
         >
           <a href="#">
-            <img
-              className="rounded-t-lg"
-              src="https://i.postimg.cc/R0Vz5Ktg/Humitas.webp"
-              alt=""
-            />
+            <img className="rounded-t-lg" src={item.image} alt="" />
           </a>
           <div className="p-5">
             <a href="#">
