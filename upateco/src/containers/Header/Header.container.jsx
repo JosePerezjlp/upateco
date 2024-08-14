@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-// import { onGetAllCategoryThunk } from "../Categorys/Category.action";
 import routes from "../../config/settings/routes";
+import { onGetAllCategoryThunk } from "../Categorys/Category.action";
 
 const HeaderSection = () => {
-  //   const { data } = useSelector((state) => state.category);
+  const { data } = useSelector((state) => state.category);
   const { login } = useSelector((state) => state.loginUser);
   const dispatch = useDispatch();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -40,9 +40,9 @@ const HeaderSection = () => {
     });
   };
 
-  //   useEffect(() => {
-  //     dispatch(onGetAllCategoryThunk());
-  //   }, [dispatch]);
+  useEffect(() => {
+    dispatch(onGetAllCategoryThunk());
+  }, [dispatch]);
 
   useEffect(() => {
     if (isDropdownOpen) {
@@ -81,7 +81,7 @@ const HeaderSection = () => {
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           {!loginUser ? (
             <Link
-              to={"sinruta"}
+              to={routes.login}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
             >
               Iniciar Sesión

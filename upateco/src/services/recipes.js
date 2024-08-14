@@ -15,7 +15,7 @@ export const getAllRecipes = async () => {
  * All information from the supplier is brought
  */
 export const getOneRecipe = async ({idRecipe}) => {
-  console.log(idRecipe)
+
   const url = `https://sandbox.academiadevelopers.com/reciperover/recipes/${idRecipe}`;
 
   const response = await axios.get(url)

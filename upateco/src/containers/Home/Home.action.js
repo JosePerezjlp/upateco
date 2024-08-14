@@ -13,7 +13,7 @@ export const onGetAllRecipesSuccess = makeActionCreator(GET_ALL_RECIPES_SUCCESS,
 export const onGetAllRecipesThunk =
   () =>
   async dispatch => {
-    console.log('hola')
+  
     dispatch(onGetAllRecipes())
 
     try {
@@ -43,7 +43,7 @@ export const onGetDetailRecipeSuccess = makeActionCreator(GET_DETAIL_RECIPE_SUCC
 export const onGetDetailRecipeThunk =
   (idRecipe) =>
   async dispatch => {
-    console.log(idRecipe)
+
     dispatch(onGetDetailRecipe())
 
     try {

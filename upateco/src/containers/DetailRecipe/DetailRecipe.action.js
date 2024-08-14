@@ -58,7 +58,7 @@ export const onGetStepRecipeSuccess = makeActionCreator(GET_STEP_RECIPE_SUCCESS,
 export const onGetStepRecipeThunk =
   (idRecipe) =>
   async dispatch => {
-    console.log(idRecipe)
+  
     dispatch(onGetStepRecipe())
 
     try {
