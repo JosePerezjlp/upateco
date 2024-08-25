@@ -64,3 +64,23 @@ export const getAllIngredients = async ({ idRecipe }) => {
         return response
         
       };
+
+
+      /**
+* All information from the supplier is brought
+*/
+export const getDeleteRecipe= async ({ idRecipe,access_token }) => {
+  
+  const url = `https://sandbox.academiadevelopers.com/reciperover/recipes/${idRecipe}
+`
+
+  const response = await axios.delete(url, {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${access_token}`
+    }
+})
+  
+  return response
+  
+};      

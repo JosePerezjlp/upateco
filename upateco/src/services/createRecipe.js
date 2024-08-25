@@ -27,7 +27,7 @@ export const getAllIngredients = async () => {
     const response = await axios.post(
         url,
         {
-         title: title,
+         title: title,      
          description: description,
          preparation_time: prepTime,
          cooking_time: cookTime,

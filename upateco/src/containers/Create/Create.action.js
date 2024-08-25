@@ -82,7 +82,7 @@ export const onPostRecipeThunk =
   }
 
 
-  export const POST_INGREDIENTS_RECIPE = 'POST_INGREDIENTS_RECIPE '
+export const POST_INGREDIENTS_RECIPE = 'POST_INGREDIENTS_RECIPE '
 export const POST_INGREDIENTS_RECIPE_ERROR = 'POST_INGREDIENTS_RECIPE_ERROR'
 export const POST_INGREDIENTS_RECIPE_SUCCESS = 'POST_INGREDIENTS_RECIPE_SUCCESS'
 export const onPostIngredientsRecipe = makeActionCreator(POST_INGREDIENTS_RECIPE)
@@ -106,7 +106,8 @@ export const onPostIngredientsRecipeThunk =
             })
         );  
    
-       dispatch(onPostIngredientsRecipeSuccess({ detailRecipe:response?.data }))       
+       dispatch(onPostIngredientsRecipeSuccess({ detailRecipe:response?.data })) 
+       dispatch(onGetAllIngredientsThunk())      
      
     } catch (error) {
       return dispatch(

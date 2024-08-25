@@ -6,6 +6,7 @@ import DetailRecipePage from "./pages/detailRecipe";
 import CategorysPage from "./pages/categorys";
 import CreatePage from "./pages/create";
 import LoginPage from "./pages/login";
+import EditPage from "./pages/Edit";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route element={<CategorysPage />} path={routes.categorys} />
         <Route element={<CreatePage />} path={routes.create} />
+        <Route element={<EditPage />} path={routes.edit} />
         <Route element={<DetailRecipePage />} path={routes.detailRecipe} />
         <Route element={<LoginPage />} path={routes.login} />
         <Route element={<HomePage />} path={routes.home} />

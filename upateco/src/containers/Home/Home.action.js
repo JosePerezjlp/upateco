@@ -1,8 +1,6 @@
 import { makeActionCreator } from "../../config/store/utils"
-import { getAllRecipes, getOneRecipe } from "../../services/recipes"
-import { onGetStepRecipeThunk } from "../DetailRecipe/DetailRecipe.action"
-// import { onGetOneIngredientsRecipeThunk, onGetStepRecipeThunk } from "../DetailRecipe/DetailRecipe.action"
-// import { getAllIngredients, getAllRecipes, getOneRecipe } from "../services/recipes"
+import { getAllIngredients, getAllRecipes, getOneRecipe } from "../../services/recipes"
+import { onGetOneIngredientsRecipeThunk, onGetStepRecipeThunk } from "../DetailRecipe/DetailRecipe.action"
 
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES '
 export const GET_ALL_RECIPES_ERROR = 'GET_ALL_RECIPES_ERROR'
