@@ -1,5 +1,5 @@
 import { makeActionCreator } from "../../config/store/utils"
-import { getIngredient, getStepRecipe } from "../../services/recipes"
+import { getDeleteRecipe, getIngredient, getStepRecipe } from "../../services/recipes"
 
 
 export const GET_ONE_INGREDIENTS_RECIPE = 'GET_ONE_INGREDIENTS_RECIPE '
@@ -58,7 +58,7 @@ export const onGetStepRecipeSuccess = makeActionCreator(GET_STEP_RECIPE_SUCCESS,
 export const onGetStepRecipeThunk =
   (idRecipe) =>
   async dispatch => {
-    console.log(idRecipe)
+  
     dispatch(onGetStepRecipe())
 
     try {
@@ -74,6 +74,36 @@ export const onGetStepRecipeThunk =
             code: error.code,
             message: error.reason
           }
+        })
+      )
+    }
+  }
+
+
+export const DELETE_ONE_RECIPE = 'DELETE_ONE_RECIPE '
+export const DELETE_ONE_RECIPE_ERROR = 'DELETE_ONE_RECIPE_ERROR'
+export const DELETE_ONE_RECIPE_SUCCESS = 'DELETE_ONE_RECIPE_SUCCESS'
+export const onDeleteOneRecipe = makeActionCreator(DELETE_ONE_RECIPE)
+export const onDeleteOneRecipeError = makeActionCreator(DELETE_ONE_RECIPE_ERROR, 'payload')
+export const onDeleteOneRecipeSuccess = makeActionCreator(DELETE_ONE_RECIPE_SUCCESS, 'payload')
+export const onDeleteOneRecipeThunk =
+  ({idRecipe, access_token,
+    onSuccessCallback}) =>
+  async dispatch => {
+  
+    dispatch(onDeleteOneRecipe())
+
+    try {
+      const response = await getDeleteRecipe({ actionType: DELETE_ONE_RECIPE, idRecipe, access_token })  
+      console.log(response)  
+      onSuccessCallback()
+    } catch (error) {      
+      return dispatch(
+        onDeleteOneRecipeError({
+          error: {
+            code: error.code           
+          },
+          message: error.response.data.detail
         })
       )
     }

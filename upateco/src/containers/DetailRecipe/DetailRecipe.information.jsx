@@ -1,23 +1,25 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import routes from "../../config/settings/routes";
 
 const InformationRecipe = (props) => {
-  const { data, ingredients, step } = props;
+  const { data, ingredients, onHandleDeleteRecipe, step } = props;
+
+  const handleDeleteRecipe = () => {
+    onHandleDeleteRecipe(data.id);
+  };
 
   return (
-    <div className="grid place-items-center min-h-screen bg-gray-100">
+    <div className="grid place-items-center mt-5">
       <div className="flex flex-col max-w-6xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="flex flex-row gap-3">
           <div className="w-3/6">
-            <img
-              className="rounded-t-lg"
-              src="https://i.postimg.cc/R0Vz5Ktg/Humitas.webp"
-              alt=""
-            />
+            <img className="rounded-t-lg" src={data.image} alt="" />
           </div>
           <div className="w-3/6">
-            <h1>{data.title}</h1>
-            <p>{data.description}</p>
-            <p>INGREDIENTES</p>
+            <h1 className="font-bold text-3xl mb-5">{data.title}</h1>
+            <p className="mb-2">{data.description}</p>
+            <p className="font-bold">INGREDIENTES</p>
             {ingredients.map((item, index) => (
               <p key={index}>
                 {item.name} {item.quantity} {item.measure}
@@ -26,16 +28,21 @@ const InformationRecipe = (props) => {
           </div>
         </div>
         <div className=" w-full mt-3 p-3">
-          <h1 className="text-center">PREPARACIÓN</h1>
+          <h1 className="font-bold text-center">PREPARACIÓN</h1>
           <p className="text-center">{step.instruction}</p>
         </div>
       </div>
+      <button className="" onClick={handleDeleteRecipe}>
+        Eliminar Receta
+      </button>
+      <Link to={routes.edit.replace(/:id/, data.id)}>Editar receta</Link>
     </div>
   );
 };
 
 InformationRecipe.defaultProps = {
   data: {},
+  onHandleDeleteRecipe: () => undefined,
 };
 
 InformationRecipe.propTypes = {
@@ -67,6 +74,7 @@ InformationRecipe.propTypes = {
       updated_at: PropTypes.string,
     })
   ),
+  onHandleDeleteRecipe: PropTypes.func,
   step: PropTypes.shape({
     created_at: PropTypes.string,
     id: PropTypes.number,

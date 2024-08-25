@@ -1,6 +1,6 @@
 import { makeActionCreator } from "../../config/store/utils"
-import { getAllCategorys, getOneCategorys } from "../services/categorys"
-import { getOneRecipe } from "../services/recipes"
+import { getAllCategorys, getOneCategorys } from "../../services/categorys"
+import { getOneRecipe } from "../../services/recipes"
 
 export const GET_ALL_CATEGORYS = 'GET_ALL_CATEGORYS '
 export const GET_ALL_CATEGORYS_ERROR = 'GET_ALL_CATEGORYS_ERROR'
@@ -44,7 +44,7 @@ export const onGetAllCategoryThunk =
   export const onGetOneCategoryThunk =
     (idCategory) =>
     async dispatch => {
-      console.log(idCategory)
+    
       dispatch(onGetOneCategory())
   
       try {
@@ -81,7 +81,7 @@ export const onGetAllCategoryThunk =
         try {
           const results = []
           for (const id of dataCategory) {
-            console.log(id);
+       
             const response = await getOneRecipe({ actionType: GET_RECIPES_IN_CATEGORY, idRecipe: id });
             results.push(response.data);
           }        
