@@ -67,6 +67,7 @@ const DetailRecipeContainer = () => {
         </div>
       )}
       <InformationRecipe
+        access_token={access_token}
         data={detailRecipe}
         ingredients={ingredients}
         onHandleDeleteRecipe={handleDeleteRecipe}

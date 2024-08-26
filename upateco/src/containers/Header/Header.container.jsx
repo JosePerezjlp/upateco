@@ -41,6 +41,12 @@ const HeaderSection = () => {
     });
   };
 
+  const handleSignOut = () => {
+    sessionStorage.clear();
+    setLoginUser(false);
+    navigate(routes.login);
+  };
+
   useEffect(() => {
     dispatch(onGetAllCategoryThunk());
   }, [dispatch]);
@@ -80,7 +86,6 @@ const HeaderSection = () => {
           href="https://flowbite.com/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          <img src="#" className="h-8" alt="logorecetaproximamente" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Recetario
           </span>
@@ -136,23 +141,7 @@ const HeaderSection = () => {
                 </li>
                 <li>
                   <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Perfil
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Perfil
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
+                    onClick={handleSignOut}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     Sign out

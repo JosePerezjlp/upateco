@@ -1,7 +1,8 @@
-import { GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_ERROR, GET_ALL_INGREDIENTS_SUCCESS } from './Create.action';
+import { GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_ERROR, GET_ALL_INGREDIENTS_SUCCESS, GET_MEASURE_SUCCESS } from './Create.action';
   
   const createProviderState = { 
-    data: []     
+    data: [],
+    measure: []     
   }
   
   /**
@@ -28,7 +29,13 @@ import { GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_ERROR, GET_ALL_INGREDIENTS_SUC
                   ...state,
                   loading: false,
                   data: payload.data,
-                };                    
+                };
+                case GET_MEASURE_SUCCESS:
+                  return {
+                    ...state,
+                    loading: false,
+                    measure: payload.measure,
+                  };                       
         default:
           return state;
       }

@@ -1,5 +1,5 @@
 import { makeActionCreator } from "../../config/store/utils"
-import { addStepInRecipe, createIngredientRecipe, createRecipe, getAllIngredients } from "../../services/createRecipe"
+import { addStepInRecipe, createIngredientRecipe, createRecipe, getAllIngredients, getAllMeasures } from "../../services/createRecipe"
 
 
 export const GET_ALL_INGREDIENTS = 'GET_ALL_INGREDIENTS '
@@ -149,3 +149,32 @@ export const onPostIngredientsRecipeThunk =
         )
       }
     }
+
+    export const GET_MEASURE = 'GET_MEASURE '
+    export const GET_MEASURE_ERROR = 'GET_MEASURE_ERROR'
+    export const GET_MEASURE_SUCCESS = 'GET_MEASURE_SUCCESS'
+    export const onGetMeasure = makeActionCreator(GET_MEASURE)
+    export const onGetMeasureError = makeActionCreator(GET_MEASURE_ERROR, 'payload')
+    export const onGetMeasureSuccess = makeActionCreator(GET_MEASURE_SUCCESS, 'payload')
+    export const onGetMeasureThunk =
+      () =>
+      async dispatch => {
+    
+        dispatch(onGetMeasure())
+    
+        try {
+          const response = await getAllMeasures({ actionType: GET_MEASURE })   
+    
+           dispatch(onGetMeasureSuccess({measure: response.data}))       
+         
+        } catch (error) {
+          return dispatch(
+            onGetMeasureError({
+              error: {
+                code: error.code,
+                message: error.reason
+              }
+            })
+          )
+        }
+      }

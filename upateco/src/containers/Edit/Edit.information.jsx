@@ -5,6 +5,7 @@ const EditInformation = (props) => {
     data,
     dataIngredients,
     ingredients,
+    measure,
     step,
     onHandleEditInformation,
     onHandleAddNewIngredient,
@@ -243,14 +244,19 @@ const EditInformation = (props) => {
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Unidad de medida
             </label>
-            <input
-              type="text"
-              className="unidad"
+            <select
               value={unidad}
               onChange={handleUnidadChange}
-              placeholder="ejemplo ml,lt,g,kg"
+              className="input-class"
               required
-            />
+            >
+              <option value="">Selecciona una unidad</option>
+              {measure.map((item) => (
+                <option key={item.key} value={item.key}>
+                  {item.value}
+                </option>
+              ))}
+            </select>
           </div>
           <button type="button" onClick={handleAddIngredient}>
             Agregar ingrediente
@@ -293,7 +299,14 @@ const EditInformation = (props) => {
                 ))}
           </div>
         </form>
-        <button onClick={sendInformation}>Crear nueva receta</button>
+      </div>
+      <div className="flex justify-center">
+        <button
+          className="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-auto"
+          onClick={sendInformation}
+        >
+          Editar receta
+        </button>
       </div>
     </div>
   );
@@ -336,6 +349,7 @@ EditInformation.propTypes = {
       updated_at: PropTypes.string,
     })
   ),
+  measure: PropTypes.array,
   step: PropTypes.shape({
     created_at: PropTypes.string,
     id: PropTypes.number,

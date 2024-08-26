@@ -1,12 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import CreateForm from "./Create.form";
 import { useCallback, useEffect, useState } from "react";
-import { onGetAllIngredientsThunk, onPostRecipeThunk } from "./Create.action";
+import {
+  onGetAllIngredientsThunk,
+  onGetMeasureThunk,
+  onPostRecipeThunk,
+} from "./Create.action";
 
 const CreateContainer = () => {
-  const { data } = useSelector((state) => state.createRecipe);
+  const { data, measure } = useSelector((state) => state.createRecipe);
   const [successAlert, setSuccessAlert] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const access_token = sessionStorage.getItem("token");
   const handleCreateRecipe = useCallback(
     (
@@ -36,7 +41,14 @@ const CreateContainer = () => {
   );
 
   useEffect(() => {
+    if (!access_token) {
+      navigate(routes.login);
+    }
+  }, [access_token, navigate]);
+
+  useEffect(() => {
     dispatch(onGetAllIngredientsThunk());
+    dispatch(onGetMeasureThunk());
   }, [dispatch]);
 
   useEffect(() => {
@@ -76,6 +88,7 @@ const CreateContainer = () => {
       <CreateForm
         dataIngredients={data}
         onHandleCreateRecipe={handleCreateRecipe}
+        measure={measure}
       />
     </>
   );
