@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
 const CreateForm = (props) => {
-  const { dataIngredients, onHandleCreateRecipe } = props;
+  const { dataIngredients, onHandleCreateRecipe, measure } = props;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [prepTime, setPrepTime] = useState("");
@@ -206,14 +206,19 @@ const CreateForm = (props) => {
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Unidad de medida
             </label>
-            <input
-              type="text"
+            <select
               value={unit}
               onChange={handleUnitChange}
               className="input-class"
-              placeholder="ejemplo ml,lt,g,kg"
               required
-            />
+            >
+              <option value="">Selecciona una unidad</option>
+              {measure.map((item) => (
+                <option key={item.key} value={item.key}>
+                  {item.value}
+                </option>
+              ))}
+            </select>
           </div>
           <button type="button" onClick={handleAddIngredient}>
             Agregar ingrediente
@@ -301,6 +306,7 @@ const CreateForm = (props) => {
 CreateForm.defaultProps = {
   dataIngredients: [],
   onHandleCreateRecipe: () => undefined,
+  measure: [],
 };
 
 CreateForm.propTypes = {
@@ -311,5 +317,6 @@ CreateForm.propTypes = {
     })
   ),
   onHandleCreateRecipe: PropTypes.func,
+  measure: PropTypes.array,
 };
 export default CreateForm;

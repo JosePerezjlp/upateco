@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import routes from "../../config/settings/routes";
 
 const InformationRecipe = (props) => {
-  const { data, ingredients, onHandleDeleteRecipe, step } = props;
+  const { access_token, data, ingredients, onHandleDeleteRecipe, step } = props;
 
   const handleDeleteRecipe = () => {
     onHandleDeleteRecipe(data.id);
@@ -32,10 +32,22 @@ const InformationRecipe = (props) => {
           <p className="text-center">{step.instruction}</p>
         </div>
       </div>
-      <button className="" onClick={handleDeleteRecipe}>
-        Eliminar Receta
-      </button>
-      <Link to={routes.edit.replace(/:id/, data.id)}>Editar receta</Link>
+      {access_token && (
+        <div>
+          <button
+            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            onClick={handleDeleteRecipe}
+          >
+            Eliminar Receta
+          </button>
+          <Link
+            className="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-auto"
+            to={routes.edit.replace(/:id/, data.id)}
+          >
+            Editar receta
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
@@ -46,6 +58,7 @@ InformationRecipe.defaultProps = {
 };
 
 InformationRecipe.propTypes = {
+  access_token: PropTypes.string,
   data: PropTypes.shape({
     categories: PropTypes.array,
     cooking_time: PropTypes.number,

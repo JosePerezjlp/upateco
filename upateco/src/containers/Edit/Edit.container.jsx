@@ -5,6 +5,7 @@ import { onGetDetailRecipeThunk } from "../Home/Home.action";
 import { useCallback, useEffect } from "react";
 import {
   onGetAllIngredientsThunk,
+  onGetMeasureThunk,
   onPostIngredientsRecipeThunk,
 } from "../Create/Create.action";
 import {
@@ -18,7 +19,7 @@ const EditContainer = () => {
   const { ingredients, step, message } = useSelector(
     (state) => state.detailRecipe
   );
-  const { data } = useSelector((state) => state.createRecipe);
+  const { data, measure } = useSelector((state) => state.createRecipe);
 
   const access_token = sessionStorage.getItem("token");
   const params = useParams();
@@ -66,6 +67,7 @@ const EditContainer = () => {
   useEffect(() => {
     dispatch(onGetDetailRecipeThunk(params?.id));
     dispatch(onGetAllIngredientsThunk());
+    dispatch(onGetMeasureThunk());
   }, [dispatch, params.id]);
 
   return (
@@ -79,6 +81,7 @@ const EditContainer = () => {
         onHandleAddNewIngredient={handleAddNewIngredient}
         onHandleDeleteIngredient={handleDeleteIngredient}
         message={message}
+        measure={measure}
       />
     </>
   );

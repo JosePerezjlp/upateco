@@ -97,3 +97,13 @@ export const getAllIngredients = async () => {
             return response.data;
           
         };
+
+        export const getAllMeasures = async () => {
+
+          const url = `https://sandbox.academiadevelopers.com/reciperover/measures/`;
+        
+          const response = await axios.get(url)
+        
+          return response
+        };
+
