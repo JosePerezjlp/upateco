@@ -48,7 +48,7 @@ export const onUpdateRecipeThunk =
         servings,
         access_token,
       });
-      console.log(response);
+   
       if (idRecipe) {
         await dispatch(
           onPostOneIngredientThunk({ ingredientsList, idRecipe, access_token })

@@ -51,7 +51,6 @@ const EditInformation = (props) => {
 
   const handleDeleteIngredient = (idIngredient) => (e) => {
     e.preventDefault();
-    console.log(idIngredient);
     const updatedIngredientsList = ingredientsList.filter(
       (item) => item.id !== idIngredient
     );
